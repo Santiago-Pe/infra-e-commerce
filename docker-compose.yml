@@ -1,0 +1,25 @@
+services:
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    environment:
+      PRODUCTS_SERVICE: products
+      SHOPPING_CART_SERVICE: shopping-cart
+      MERCHANDISE_SERVICE: merchandise
+    ports:
+      - 3000:3000
+  merchandise:
+    container_name: merchandise
+    build: ./merchandise
+    ports:
+      - 3003:3003
+  products:
+    container_name: products
+    build: ./products
+    ports:
+      - 3001:3001
+  shopping-cart:
+    container_name: shopping-cart
+    build: ./shopping-cart
+    ports:
+      - 3002:3002
