@@ -20,15 +20,17 @@ jobs:
         run: |
           tf_version=$TERRAFORM_VERSION
           wget -q  https://releases.hashicorp.com/terraform/"$tf_version"/terraform_"$tf_version"_linux_amd64.zip 
-          rm -f terraform
           unzip -qq terraform_"$tf_version"_linux_amd64.zip  -y
           sudo mv terraform /usr/local/bin/
+        
 
       - name: Verify Terraform version
         run: terraform --version
 
       - name: Terraform init
-        run: terraform init -input=false
+        run: |
+          cd infra
+          terraform init -input=false
 
       - name: Terraform validation
         run: terraform validate
