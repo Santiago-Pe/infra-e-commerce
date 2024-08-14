@@ -20,7 +20,7 @@ jobs:
         run: |
           tf_version=$TERRAFORM_VERSION
           wget -q  https://releases.hashicorp.com/terraform/"$tf_version"/terraform_"$tf_version"_linux_amd64.zip 
-          unzip -qq terraform_"$tf_version"_linux_amd64.zip  -y
+          unzip -qq terraform_"$tf_version"_linux_amd64.zip
           sudo mv terraform /usr/local/bin/
         
 

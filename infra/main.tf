@@ -1,6 +1,5 @@
 provider "aws" {
   region = var.region
-  profile = "mundo2"
 }
 
 resource "aws_security_group" "allow_ssh" {
