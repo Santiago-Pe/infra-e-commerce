@@ -23,7 +23,3 @@ variable "ami_id" {
   default     = "ami-08e9f0e999f3c25a3"  # Ubuntu 20.04 LTS
 }
 
-variable "key_name" {
-  description = "The name of the SSH key pair to use for the EC2 instance"
-  type        = string
-}

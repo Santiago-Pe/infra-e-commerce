@@ -23,10 +23,19 @@ resource "aws_security_group" "allow_ssh" {
   }
 }
 
-resource "aws_instance" "example" {
+resource "tls_private_key" "ecommerce" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+resource "aws_key_pair" "deployer_key" {
+  key_name   = "llave"
+  public_key = tls_private_key.ecommerce.public_key_openssh
+}
+resource "aws_instance" "ecommerce" {
   ami           = var.ami_id
   instance_type = var.instance_type
-  key_name      = var.key_name
+  key_name      = aws_key_pair.deployer_key.key_name
 
   vpc_security_group_ids = [aws_security_group.allow_ssh.id]
   subnet_id              = var.subnet_id
@@ -38,10 +47,3 @@ resource "aws_instance" "example" {
   }
 }
 
-output "instance_public_ip" {
-  value = aws_instance.example.public_ip
-}
-
-output "instance_id" {
-  value = aws_instance.example.id
-}
